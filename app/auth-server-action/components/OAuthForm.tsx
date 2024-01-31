@@ -1,8 +1,6 @@
 'use client'
 
 import { createBrowserClient } from '@supabase/ssr'
-
-
 import { Button } from "@/components/ui/button";
 import React from "react";
 
@@ -14,10 +12,12 @@ export default function OAuthForm() {
 	)
 
 	const loginWithGithub = () => {
+		console.log(`${location.origin}/auth-server-action/callback`)
+
 		supabase.auth.signInWithOAuth({
 			provider: 'github',
 			options: 	{
-			redirectTo: `${Location.origin}/auth-server-action/callback`,
+			redirectTo: `https://ponaaaebmrmbgisdhbrx.supabase.co/auth/v1/callback`,
 		}
 	})
 	}

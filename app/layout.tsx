@@ -22,7 +22,7 @@ export default function RootLayout({
 				<div className="flex flex-col">
 					<Link href="/auth-server-action">Auth Server Action</Link>
 					<Link href="/">home</Link>
-					<Link href="/todo">Learn CRUD</Link>
+					<Link href="/todo">CRUD</Link>
 				</div>
 				{children} <Toaster />
 			</body>

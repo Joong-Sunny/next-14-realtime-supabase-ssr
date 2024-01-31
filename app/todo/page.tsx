@@ -4,22 +4,17 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import readUserSession from "@/lib/actions";
 import {redirect} from "next/navigation";
+import {deleteTodoById, readTodo, updateTodoById} from "@/app/todo/actions";
 
 export default async function Page() {
 
-	const todos = [
-		{
-			title: "Subscribe",
-			created_by: "091832901830",
-			id: "101981908",
-			completed: false,
-		},
-	];
 
 	const  {data} = await readUserSession()
 	if (data.session){
 		return redirect("/auth-server-action")
 	}
+
+	const {data: todos} = await readTodo()
 
 
 	return (
@@ -28,6 +23,10 @@ export default async function Page() {
 				<CreateForm />
 
 				{todos?.map((todo, index) => {
+					const deleteTodo = deleteTodoById.bind(null, todo.id)
+					const updateTodo = updateTodoById.bind(null, todo.id, !todo.completed)
+
+
 					return (
 						<div key={index} className="flex items-center gap-6">
 							<h1
@@ -38,8 +37,13 @@ export default async function Page() {
 								{todo.title}
 							</h1>
 
-							<Button>delete</Button>
+							<form action={deleteTodo}>
+								<Button>delete</Button>
+							</form>
+
+							<form action={updateTodo}>
 							<Button>Update</Button>
+							</form>
 						</div>
 					);
 				})}

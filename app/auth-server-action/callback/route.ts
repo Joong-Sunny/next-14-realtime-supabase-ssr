@@ -32,12 +32,14 @@ export async function GET(request: Request) {
     )
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     if (!error) {
+      console.log("여기!!!")
       return NextResponse.redirect(requestURL.origin+"/todo")
     }else{
+      console.log("저기!!!")
       console.log(error)
     }
   }
 
   // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/auth/auth-code-error`)
+  // return NextResponse.redirect(`${origin}/auth/auth-code-error`)
 }
