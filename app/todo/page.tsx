@@ -10,7 +10,7 @@ export default async function Page() {
 
 
 	const  {data} = await readUserSession()
-	if (data.session){
+	if (!data.session){
 		return redirect("/auth-server-action")
 	}
 

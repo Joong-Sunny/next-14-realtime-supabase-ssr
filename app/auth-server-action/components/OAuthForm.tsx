@@ -17,7 +17,7 @@ export default function OAuthForm() {
 		supabase.auth.signInWithOAuth({
 			provider: 'github',
 			options: 	{
-			redirectTo: `https://ponaaaebmrmbgisdhbrx.supabase.co/auth/v1/callback`,
+				redirectTo: `${location.origin}/auth-server-action/callback`,
 		}
 	})
 	}
