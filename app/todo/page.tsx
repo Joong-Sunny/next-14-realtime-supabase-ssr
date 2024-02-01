@@ -2,6 +2,7 @@ import React from "react";
 import CreateForm from "./components/CreateForm";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import Logout from "./components/SignOut";
 import readUserSession from "@/lib/actions";
 import {redirect} from "next/navigation";
 import {deleteTodoById, readTodo, updateTodoById} from "@/app/todo/actions";
@@ -20,6 +21,7 @@ export default async function Page() {
 	return (
 		<div className="flex justify-center items-center h-screen">
 			<div className="w-96 space-y-5">
+				<Logout/>
 				<CreateForm />
 
 				{todos?.map((todo, index) => {
