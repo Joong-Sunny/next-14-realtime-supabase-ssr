@@ -18,14 +18,27 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
-				<div className="flex flex-col">
-					<Link href="/auth-server-action">Auth Server Action</Link>
-					<Link href="/">home</Link>
-					<Link href="/todo">CRUD</Link>
-				</div>
-				{children} <Toaster />
-			</body>
+		<body className={inter.className}>
+		<div className="flex flex-col">
+			<Link href="/">
+				<span className="text-2xl font-bold text-blue-500 hover:underline focus:underline focus:outline-none">
+					Home
+				</span>
+			</Link>
+			<Link href="/auth-server-action">
+				<span className="text-2xl font-bold text-blue-500 hover:underline focus:underline focus:outline-none">
+					Auth Server Action
+				</span>
+			</Link>
+
+			<Link href="/todo">
+				<span className="text-2xl font-bold text-blue-500 hover:underline focus:underline focus:outline-none">
+					CRUD
+				</span>
+			</Link>
+		</div>
+		{children} <Toaster />
+		</body>
 		</html>
 	);
 }
