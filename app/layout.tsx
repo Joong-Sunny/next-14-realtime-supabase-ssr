@@ -36,6 +36,20 @@ export default function RootLayout({
 					CRUD
 				</span>
 			</Link>
+
+			<Link href="/add-user-info">
+				<span className="text-2xl font-bold text-blue-500 hover:underline focus:underline focus:outline-none">
+					Add User Info
+				</span>
+			</Link>
+
+			<Link href="/check-all-user-info">
+				<span className="text-2xl font-bold text-blue-500 hover:underline focus:underline focus:outline-none">
+					See All Users Info
+				</span>
+			</Link>
+
+
 		</div>
 		{children} <Toaster />
 		</body>
