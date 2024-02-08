@@ -3,10 +3,10 @@
 import createSupabaseServerClient from "@/lib/supabase/server";
 import {revalidatePath} from "next/cache";
 
-export async function createTodo(title: string) {
+export async function createTodo({title, description}) {
   const supabase = await createSupabaseServerClient()
 
-  const result = await supabase.from('crud-demo').insert({title}).single()
+  const result = await supabase.from('crud-demo').insert({title, description}).single()
 
   console.log("createTODO함수 내부: ", result)
 
@@ -17,6 +17,10 @@ export async function createTodo(title: string) {
 export async function readTodo() {
 
   const supabase = await createSupabaseServerClient()
+  const {data} = await supabase.auth.getUser()
+  console.log("--- --- --- --- ---")
+  console.log("유저데이터 출력해버림;;",data)
+  console.log("--- --- --- --- ---")
 
   return supabase.from('crud-demo').select('*')
 }

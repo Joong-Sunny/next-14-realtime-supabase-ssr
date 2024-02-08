@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {deleteTodoById, readTodo, updateTodoById} from "@/app/todo/actions";
-import {supabase} from "@/app/auth-server-action/components/OAuthForm";
+import {supabase} from "@/lib/supabase/client";
 
 export default function Todos() {
   const [todos, setTodos] = useState<unknown[]>([])

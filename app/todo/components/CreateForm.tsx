@@ -19,11 +19,14 @@ import { Button } from "@/components/ui/button";
 import { useTransition } from "react";
 import { cn } from "@/lib/utils";
 import {createTodo} from "@/app/todo/actions";
-import {start} from "node:repl";
+
 
 const FormSchema = z.object({
 	title: z.string().min(1, {
 		message: "Title is required.",
+	}),
+	description: z.string().min(1, {
+		message: "Description is required.",
 	}),
 });
 
@@ -34,13 +37,14 @@ export default function CreateForm() {
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
 			title: "",
+			description: "",
 		},
 	});
 
 	function onSubmit(data: z.infer<typeof FormSchema>) {
 
 		startTransition(async () => {
-			const result = await createTodo(data.title)
+			const result = await createTodo(data)
 
 			console.log("실행된거 맞음....?:", result)
 
@@ -74,6 +78,26 @@ export default function CreateForm() {
 							<FormControl>
 								<Input
 									placeholder="todo title"
+									{...field}
+									onChange={field.onChange}
+								/>
+							</FormControl>
+							<FormMessage />
+
+						</FormItem>
+
+					)}
+				/>
+
+				<FormField
+					control={form.control}
+					name="description"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Description</FormLabel>
+							<FormControl>
+								<Input
+									placeholder="about todo"
 									{...field}
 									onChange={field.onChange}
 								/>
